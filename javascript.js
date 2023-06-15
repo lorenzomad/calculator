@@ -1,3 +1,12 @@
+let first = '';
+let second = '';
+let operator = '';
+
+const main_display = document.querySelector('.bottom')
+const top_diplay = document.querySelector('.top')
+
+
+
 const add = (first, second) =>{
     return first + second;
 }
@@ -33,30 +42,15 @@ const operate = (first, second, operator) => {
     }
 }
 
-
-let first = 0;
-
-let second = 0 ;
-
-let operator = '';
-
-let current = '';
-
-const main_display = document.querySelector('.bottom')
-const top_diplay = document.querySelector('.top')
-
-
-
-
 const numbers = document.querySelectorAll(".number")
 
 numbers.forEach(element => {
     element.addEventListener('click', () =>{
-        current += element.textContent.trim()
-        main_display.textContent = current;
-    })
-    
-});
+        second += element.textContent.trim();
+        main_display.textContent = second;
+
+    });
+})
 
 const functions = document.querySelectorAll('.operator')
 
@@ -67,8 +61,8 @@ functions.forEach(element => {
         
         if (operator === '') {
             // if the button is pressed for the 1st time
-            first = parseInt(current);
-            current = '';
+            first = parseInt(second);
+            second = '';
             top_diplay.textContent = first + ' ' + sign ;
             main_display.textContent = 0
             operator = sign
@@ -76,9 +70,8 @@ functions.forEach(element => {
 
         } else {
             // second button press
-            second = parseInt(current);
-            current = '';
-            first = operate(first, second, operator) 
+            
+            first = operate(first, parseInt(second), operator) 
 
             if (first === 'error'){
                 main_display.textContent = "ERROR don\'t divide by 0";
@@ -97,10 +90,16 @@ equal = document.querySelector('.equal')
 
 equal.addEventListener('click', ()=>{
     if (operator != ''){
-        second = parseInt(current);
-        current = '';
-        top_diplay.textContent = first;
-        main_display.textContent = 0
-        operator = ''
+        first = operate(first, parseInt(second), operator) 
+
+            if (first === 'error'){
+                main_display.textContent = "ERROR don\'t divide by 0";
+            } else{
+                top_diplay.textContent = first;
+                main_display.textContent = 0
+                operator = ''
+            
+            }
+        
     } 
 })
