@@ -20,7 +20,7 @@ const multiply = (first, second) =>{
 }
 
 const divide = (first, second) =>{
-    if( second === 0){
+    if( second == 0){
         return 'error'
     }
     return first / second;
@@ -64,7 +64,6 @@ functions.forEach(element => {
             first = parseInt(second);
             second = '';
             top_diplay.textContent = first + ' ' + sign ;
-            main_display.textContent = 0
             operator = sign
             
 
@@ -75,6 +74,7 @@ functions.forEach(element => {
 
             if (first === 'error'){
                 main_display.textContent = "ERROR don\'t divide by 0";
+                console.log("ERROR don\'t divide by 0");
             } else{
                 top_diplay.textContent = first;
                 main_display.textContent = 0
@@ -96,7 +96,6 @@ equal.addEventListener('click', ()=>{
                 main_display.textContent = "ERROR don\'t divide by 0";
             } else{
                 top_diplay.textContent = first;
-                main_display.textContent = 0
                 operator = ''
             
             }
